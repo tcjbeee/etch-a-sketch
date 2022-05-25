@@ -1,0 +1,8 @@
+#container {
+    height: 480px;
+    width: 480px;
+    background-color: pink;
+    display: grid;
+    gap: 5px;
+}
+
