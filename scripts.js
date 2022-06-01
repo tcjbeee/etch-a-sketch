@@ -1,65 +1,65 @@
-bigGridElement = document.getElementById("container");
+let size = 16;
+let column = 0;
+let row = 0;
 
-function gridElementCreate(bigGridElement, column) {
-    const newGridElement = document.createElement("div");
-    newGridElement.className = "gridBox";
-    //gridArray.push(newGridElement);
-    newGridElement.setAttribute("style", "background: blue; height: auto; width: auto; justify-content: center;");
-    newGridElement.style.gridRow = row;
-    newGridElement.style.gridColumn = column;
-    bigGridElement.appendChild(newGridElement);
-    document.body.insertAdjacentElement("beforeend", bigGridElement);
-}
+console.log("Hello World!");
 
+const gridBox = document.getElementById("container");
 
-let position;
+function createGrid (size) {
 
-for (column= 1; column < 16; column++) {
-    for (row=1; row < 16; row ++){
-        gridElementCreate(bigGridElement, column, row);
+    if (size > 100) {
+
+        alert("This grid is too big - please enter another number!");
+
     }
-    gridElementCreate(bigGridElement, column, row);
-}
 
-//console.log(gridArray);
+    else {
 
+        for (column = 0; column < size; column++) {
 
+            
+            for (row = 0; row < size; row++) {
+                
+                const smallBox = document.createElement("div");
+                smallBox.style.backgroundColor = "white";
 
-//console.log(gridArray);
-//gridArray = Array.from(gridArray);
-//console.log(gridArray[1]);
+                smallBox.style.gridRow = row;
+                smallBox.addEventListener("mouseover", function event(smallBox) {
+                    smallBox.target.style.backgroundColor = "black";
+                })
 
-//console.log("Grid initialised!"); 
-
-
-
-//let boxes = document.getElementsByClassName("container");
-//console.log(boxes);
-
-function changeColour(gridArray){
-    let box = document.querySelector(gridArray[i, "div"]);
-    box.style.background = "red";
-}
-
-gridArray = document.querySelectorAll("div");
-
-window.onload = function begin() {
-    
-    for (i=0; i < gridArray.length; i++){
-    //gridArray.forEach(v => v.addEventListener("mouseover", changeColour));
-    gridArray = document.querySelectorAll("div");
-    gridArray[i].addEventListener("mouseover", changeColour);
-}
-}
-
-
-/*function colourChange() {
-    for (let box; boxes = gridArray.onmouseover; boxes++) {
-        gridElements = gridArray[boxes];
-        gridElements.style.background = "red";
-        console.log("ping!");
+                gridBox.appendChild(smallBox);
+            
+            }
+        }
     }
-    
 }
-let gridElements = gridArray[boxes];
-gridElements.addEventListener("onmouseover", colourChange); */
+
+createGrid(size);
+console.log("Grid created!");
+
+resetButton = document.querySelector("#reset");
+
+resetButton.addEventListener("click", function (){
+    allBoxes = gridBox.children;
+    let area = (size * size);
+    for (i = 0; i < area; i++){
+        allBoxes[i].style.backgroundColor = "white";
+    }
+})
+
+function emptyGrid (parent) {
+    while (parent.firstChild) {
+        parent.removeChild(parent.firstChild);
+    }
+}
+
+sizeButton = document.querySelector("#sizeSelect");
+
+sizeButton.addEventListener("click", function() {
+    size = window.prompt("Please enter the height & width of the grid:")
+    emptyGrid(gridBox);
+    createGrid(size);
+})
+
